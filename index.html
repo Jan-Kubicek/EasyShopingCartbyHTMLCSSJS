@@ -9,30 +9,28 @@
     </head>
     <body>
         <main>
-            <div id="table-goods">
-                <table>
-                    <tr><th>Table of available goods</th></tr>
-                    <tr><th>ID</th><th>Name</th><th>Number of available pieces</th><th>Price per Piece</th></tr>
-                </table>
-            </div>
-            <div id="table-shoppingCart">
-                <table>
-                    <tr><th>Table of selected goods</th></tr>
-                    <tr><th>ID</th><th>Name</th><th>Number of selected pieces</th><th>Price for all pieces of that kind</th></tr>
-                </table>
+            <div id="tables">
+                    <table  id="table-goods">
+                        <tr><th colspan="4">Table of available goods</th></tr>
+                        <tr><th>ID</th><th>Name</th><th>Number of available pieces</th><th>Price per Piece</th></tr>
+                    </table>
+                    <table id="table-shoppingCart">
+                        <tr><th colspan="4">Table of selected goods</th></tr>
+                        <tr><th>ID</th><th>Name</th><th>Number of selected pieces</th><th>Price for all pieces of that kind</th></tr>
+                    </table>
             </div>
             <div id="control-panel">
                 <fieldset>
                     <legend>Control panel for shopping Cart</legend>
-                    <input type="button" value = " Reset " onclick="reset()"><br>
+                    <input type="button" value = " Reset " onclick="reset()" class="button"><br>
                     <label for="idOfGoodsType">ID of chosen type of goods</label>
                     <input type="number" id="idOfGoodsType" placeholder="Set id of goods"><br>
                     <label for="numberOfPieces">Number of Pieces</label>
                     <input type="number" id="numberOfPieces" placeholder="Set number"><br>
-                    <input type="button" value="Add goods to Cart" onclick="addGoods()">
-                    <input type="button" value="Remove all goods from Cart" onclick="removeAllGoods()"><br>
+                    <input type="button" value="Add goods to Cart" onclick="addGoods()" class="button">
+                    <input type="button" value="Remove all goods from Cart" onclick="removeAllGoods()" class="button"><br>
                     <input type="number" id="idOfRemovingRow" placeholder="Set id of row from which you want to remove goods">
-                    <input type="button" value="Remove selected row" onclick="removeOnewRow()"><br>
+                    <input type="button" value="Remove selected row" onclick="removeOnewRow()" class="button"><br>
                     <label for="meny">Please select currency which you want to use in payment</label>
                     <select id="meny">
                         <option id="czk">CZK</option>
@@ -42,7 +40,7 @@
                         <option id="yen">YEN</option>
                         <option id="rub">RUB</option>
                     </select><br>
-                    <input type="button" value="Make a payment for the shopping cart" onclick="payment()">
+                    <input type="button" value="Make a payment for the shopping cart" onclick="payment()" class="button">
                 </fieldset>
             </div>
         </main>

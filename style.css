@@ -2,5 +2,88 @@ body{
     background:#1a1a1a;
 }
 main{
+    background-color: rgb(135, 135, 135);
+    display: flex;
+}
+#tables{
+    width: 70%;
+    display:inline;
+    float:left;
+    text-align: center;
+    align-self: center;
+    align-items: center;
+    margin:3%;
+}
+#control-panel{
+    width: 30%;
+    display: inline;
+    float: right;
+}
+#table-goods{
     background-color: white;
+    width: 100%;
+    border-width: 4px ;
+    border-style: solid;
+    border-color: blueviolet;
+}
+#table-goods tr:nth-child(2n + 3){
+    background-color: lightgray;
+    border-bottom-color: blueviolet;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+}
+#table-goods th{
+    border-bottom-color: blueviolet;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-right-style: solid;
+    border-right-color: blueviolet;
+    border-right-width: 1px;
+}
+#table-shoppingCart{
+    background-color: white;
+    width: 100%;
+    border-width: 4px ;
+    border-style: solid;
+    border-color: rgb(43, 67, 226);
+}
+#table-shoppingCart tr:nth-child(2n + 3){
+    background-color: lightgray;
+    border-bottom-color: rgb(43, 67, 226);
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+}
+#table-shoppingCart th{
+    border-bottom-color: rgb(43, 67, 226);
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-right-style: solid;
+    border-right-color: rgb(43, 67, 226);
+    border-right-width: 1px;
+}
+fieldset{
+    margin:5%;
+    padding:3%;
+    text-align: center;
+    background-color: darkslategrey;
+    color: white;
+    font-weight: bolder;
+}
+.button{
+    width: 100%;
+    height: 40%;
+    background-color: rgb(43, 67, 226);
+    color: white;
+    font-weight: bolder;
+}
+#idOfGoodsType, #numberOfPieces, #idOfRemovingRow{
+    width: 95%;
+    font-weight: bolder;
+}
+#meny{
+    background-color: rgb(43, 67, 226);
+    color: white;
+    font-weight: bolder;
+    width: 50%;
+    text-align: center;
 }
