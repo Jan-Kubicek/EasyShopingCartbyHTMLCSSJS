@@ -35,11 +35,11 @@ function creatingListOfGoods(){
     const hrusky5 = new good("Hrusky",180,10); goods.push(hrusky5);
 }
 
-function importGoods(){
+function importGoods(){ 
     if(isGoodsImported){
         var numberOfRowsInShoppingCart = document.getElementById("table-goods").rows.length;
         for (let i = 2; i < numberOfRowsInShoppingCart; i++){
-            for(let j = 0; i < numberOfRowsInShoppingCart ; j++){
+            for(let j = 0; j < numberOfRowsInShoppingCart ; j++){
                 document.getElementById("table-goods").deleteRow(i);
             }
         }
@@ -65,7 +65,9 @@ function addGoods(){
     if(isSelectedGoodsAdded) {
         var numberOfRowsInShoppingCart = document.getElementById("table-shoppingCart").rows.length;
         for (let i = 2; i < numberOfRowsInShoppingCart; i++){
-            document.getElementById("table-shoppingCart").deleteRow(2);
+            for(let j = 0; j < numberOfRowsInShoppingCart ; j++){
+                document.getElementById("table-shoppingCart").deleteRow(i);
+            }
         }
     }
         let table = document.getElementById("table-shoppingCart");
