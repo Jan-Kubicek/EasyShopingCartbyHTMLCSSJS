@@ -69,51 +69,56 @@ function addGoods(){
                 document.getElementById("table-shoppingCart-body").deleteRow(row);
             }
         }
-    }
+    }   
+        let add = true;
         const table = document.getElementById("table-shoppingCart-body");
         const idOfGood = Number(document.getElementById("idOfGoodsType").value);
         if( idOfGood > goods.length ) {
             alert("You cannot buy nothing");
+            add = false;
             return;
         }
         const numberOfPieces = Number(document.getElementById("numberOfPieces").value);
         if( idOfGood < 0 || numberOfPieces <= 0){
             alert("You cannot buy nothing");
+            add = false;
             return;
         }
         if(goods[idOfGood].numberOfAvaiablePieces == 0){
             alert("You cannot buy more goods than how many is available right now");
+            add = false;
             return;
         }
         if(numberOfPieces > goods[idOfGood].numberOfAvaiablePieces) {
-            numberOfPieces = goods[idOfGood].numberOfAvaiablePieces;
-            goods[idOfGood].numberOfAvaiablePieces = 0;
             alert("You cannot buy more goods than how many is available right now");
-            reset();
-        }else{
-            let available = goods[idOfGood].numberOfAvaiablePieces;
-            available -= Number(numberOfPieces);
-            goods[idOfGood].numberOfAvaiablePieces = available;
-            reset();
+            add = false;
+            return;
         }
+        let available = goods[idOfGood].numberOfAvaiablePieces;
+        available -= Number(numberOfPieces);
+        goods[idOfGood].numberOfAvaiablePieces = available;
+        reset();
         const selectedGood = Object.assign({},goods[idOfGood]); //*Making copy of object
         const priceForAllPieces = numberOfPieces * selectedGood.pricePerPiece;
         selectedGood.pricePerPiece = priceForAllPieces;
         selectedGood.numberOfAvaiablePieces = numberOfPieces;
         selectedGoods.push(selectedGood);
-        for(let i = 0; i < selectedGoods.length; i++){
-            const row = table.insertRow(-1);
-            const cellID = row.insertCell(0);
-            cellID.innerHTML = i;
-            const cellName = row.insertCell(1);
-            cellName.innerHTML = selectedGoods[i].name;
-            const cellNumberOfAvaiablePieces = row.insertCell(2);
-            cellNumberOfAvaiablePieces.innerHTML = selectedGoods[i].numberOfAvaiablePieces;
-            const cellPricePerPiece = row.insertCell(3);
-            cellPricePerPiece.innerHTML = selectedGoods[i].pricePerPiece;
-        }
-        ++ idOfSelectedPieces;
-        isSelectedGoodsAdded = true;
+        if(!add){
+        return;
+    }
+    for(let i = 0; i < selectedGoods.length; i++){
+        const row = table.insertRow(-1);
+        const cellID = row.insertCell(0);
+        cellID.innerHTML = i;
+        const cellName = row.insertCell(1);
+        cellName.innerHTML = selectedGoods[i].name;
+        const cellNumberOfAvaiablePieces = row.insertCell(2);
+        cellNumberOfAvaiablePieces.innerHTML = selectedGoods[i].numberOfAvaiablePieces;
+        const cellPricePerPiece = row.insertCell(3);
+        cellPricePerPiece.innerHTML = selectedGoods[i].pricePerPiece;
+    }
+    ++ idOfSelectedPieces;
+    isSelectedGoodsAdded = true;
 }
 
 function reset(){
