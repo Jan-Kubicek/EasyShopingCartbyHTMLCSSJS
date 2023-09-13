@@ -69,7 +69,7 @@ function addGoods(){
                 document.getElementById("table-shoppingCart-body").deleteRow(row);
             }
         }
-    }   
+    }   let isThere = false;
         let add = true;
         const table = document.getElementById("table-shoppingCart-body");
         const idOfGood = Number(document.getElementById("idOfGoodsType").value);
@@ -102,23 +102,40 @@ function addGoods(){
         const priceForAllPieces = numberOfPieces * selectedGood.pricePerPiece;
         selectedGood.pricePerPiece = priceForAllPieces;
         selectedGood.numberOfAvaiablePieces = numberOfPieces;
-        selectedGoods.push(selectedGood);
-        if(!add){
-        return;
-    }
-    for(let i = 0; i < selectedGoods.length; i++){
-        const row = table.insertRow(-1);
-        const cellID = row.insertCell(0);
-        cellID.innerHTML = i;
-        const cellName = row.insertCell(1);
-        cellName.innerHTML = selectedGoods[i].name;
-        const cellNumberOfAvaiablePieces = row.insertCell(2);
-        cellNumberOfAvaiablePieces.innerHTML = selectedGoods[i].numberOfAvaiablePieces;
-        const cellPricePerPiece = row.insertCell(3);
-        cellPricePerPiece.innerHTML = selectedGoods[i].pricePerPiece;
-    }
-    ++ idOfSelectedPieces;
-    isSelectedGoodsAdded = true;
+        for(let i = 0; i < selectedGoods.length; i++){
+            const name = selectedGood.name;
+            if(selectedGoods[i].name == name){
+                isThere = true;
+            }
+        }
+        if(isThere){
+            for(let i = 0; i < selectedGoods.length; i++){
+                const name = selectedGood.name;
+                if(name == selectedGoods[i].name){
+                    selectedGoods[i].numberOfAvaiablePieces += numberOfPieces;
+                    selectedGoods[i].pricePerPiece += priceForAllPieces;
+                    add = true;
+                }
+            }
+        }
+        else{
+            selectedGoods.push(selectedGood);
+            add = true;
+        }
+        if(!add){return;}
+        for(let i = 0; i < selectedGoods.length; i++){
+            const row = table.insertRow(-1);
+            const cellID = row.insertCell(0);
+            cellID.innerHTML = i;
+            const cellName = row.insertCell(1);
+            cellName.innerHTML = selectedGoods[i].name;
+            const cellNumberOfAvaiablePieces = row.insertCell(2);
+            cellNumberOfAvaiablePieces.innerHTML = selectedGoods[i].numberOfAvaiablePieces;
+            const cellPricePerPiece = row.insertCell(3);
+            cellPricePerPiece.innerHTML = selectedGoods[i].pricePerPiece;
+        }
+        ++ idOfSelectedPieces;
+        isSelectedGoodsAdded = true;
 }
 
 function reset(){
@@ -126,6 +143,16 @@ function reset(){
 }
 
 function removeAllGoods(){
+    for (const selectedGood of selectedGoods) {
+        const name = selectedGood.name;
+        for (const goodElement of goods) {
+            if(name == goodElement.name){
+                const selectedPieces = selectedGood.numberOfAvaiablePieces;
+                goodElement.numberOfAvaiablePieces += selectedPieces;
+            }
+        }
+    }
+    reset();
     const numberOfRowsInShoppingCart = document.getElementById("table-shoppingCart-body").rows.length;
     if(numberOfRowsInShoppingCart > 0){
         for (let i = 0; i < numberOfRowsInShoppingCart; i++){
