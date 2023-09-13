@@ -37,7 +37,7 @@ function creatingListOfGoods(){
 
 function importGoods(){ 
     if(isGoodsImported){
-        var numberOfRowsInShoppingCart = document.getElementById("table-goods").rows.length;
+        const numberOfRowsInShoppingCart = document.getElementById("table-goods").rows.length;
         for (let i = 2; i < numberOfRowsInShoppingCart; i++){
             for(let j = 0; j < numberOfRowsInShoppingCart ; j++){
                 document.getElementById("table-goods").deleteRow(i);
@@ -46,16 +46,16 @@ function importGoods(){
     }else{
         creatingListOfGoods();
     }
-    let table = document.getElementById("table-goods");
+    const table = document.getElementById("table-goods");
     for(let i = 0; i < goods.length; i++){
-        let row = table.insertRow(-1);
-        let cellID = row.insertCell(0);
+        const row = table.insertRow(-1);
+        const cellID = row.insertCell(0);
         cellID.innerHTML = i;
-        let cellName = row.insertCell(1);
+        const cellName = row.insertCell(1);
         cellName.innerHTML = goods[i].name;
-        let cellNumberOfAvaiablePieces = row.insertCell(2);
+        const cellNumberOfAvaiablePieces = row.insertCell(2);
         cellNumberOfAvaiablePieces.innerHTML = goods[i].numberOfAvaiablePieces;
-        let cellPricePerPiece = row.insertCell(3);
+        const cellPricePerPiece = row.insertCell(3);
         cellPricePerPiece.innerHTML = goods[i].pricePerPiece;
     }
     isGoodsImported = true;
@@ -63,19 +63,19 @@ function importGoods(){
 
 function addGoods(){
     if(isSelectedGoodsAdded) {
-        var numberOfRowsInShoppingCart = document.getElementById("table-shoppingCart").rows.length;
-        for (let i = 2; i < numberOfRowsInShoppingCart; i++){
-            for(let j = 0; j < numberOfRowsInShoppingCart ; j++){
-                document.getElementById("table-shoppingCart").deleteRow(i);
+        const numberOfRowsInShoppingCart = document.getElementById("table-shoppingCart-body").rows.length;
+        for (let i = 0; i < numberOfRowsInShoppingCart; i++){
+            for (const row of document.getElementById("table-shoppingCart-body").rows) {
+                document.getElementById("table-shoppingCart-body").deleteRow(row);
             }
         }
     }
-        let table = document.getElementById("table-shoppingCart");
-        let idOfGood = Number(document.getElementById("idOfGoodsType").value);
+        const table = document.getElementById("table-shoppingCart-body");
+        const idOfGood = Number(document.getElementById("idOfGoodsType").value);
         if( idOfGood > goods.length ) {
             alert(err);
         }
-        let numberOfPieces = Number(document.getElementById("numberOfPieces").value);
+        const numberOfPieces = Number(document.getElementById("numberOfPieces").value);
         if( idOfGood < 0 || numberOfPieces <= 0){
             alert("You cannot buy nothing");
             return;
@@ -84,14 +84,14 @@ function addGoods(){
         selectedGoods.push(selectedGood);
         selectedGood.numberOfAvaiablePieces = numberOfPieces;
         for(let i = 0; i < selectedGoods.length; i++){
-            let row = table.insertRow(-1);
-            let cellID = row.insertCell(0);
+            const row = table.insertRow(-1);
+            const cellID = row.insertCell(0);
             cellID.innerHTML = i;
-            let cellName = row.insertCell(1);
+            const cellName = row.insertCell(1);
             cellName.innerHTML = selectedGoods[i].name;
-            let cellNumberOfAvaiablePieces = row.insertCell(2);
+            const cellNumberOfAvaiablePieces = row.insertCell(2);
             cellNumberOfAvaiablePieces.innerHTML = selectedGoods[i].numberOfAvaiablePieces;
-            let cellPricePerPiece = row.insertCell(3);
+            const cellPricePerPiece = row.insertCell(3);
             cellPricePerPiece.innerHTML = selectedGoods[i].pricePerPiece;
         }
         ++ idOfSelectedPieces;
@@ -100,4 +100,15 @@ function addGoods(){
 
 function reset(){
     importGoods();
+}
+
+function removeAllGoods(){
+    const numberOfRowsInShoppingCart = document.getElementById("table-shoppingCart-body").rows.length;
+    for (let i = 0; i < numberOfRowsInShoppingCart; i++){
+        for (const row of document.getElementById("table-shoppingCart-body").rows) {
+            document.getElementById("table-shoppingCart-body").deleteRow(row);
+        }
+    }
+    selectedGoods.length = 0; //* Making selectedGoods Empty by setting length
+    alert("All goods was deleted from your shopping cart" + selectedGoods.length);
 }
