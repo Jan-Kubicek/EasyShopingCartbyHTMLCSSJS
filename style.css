@@ -26,7 +26,7 @@ main{
     border-style: solid;
     border-color: blueviolet;
 }
-#table-goods tr:nth-child(2n + 3){
+#table-goods-body tr:nth-child(odd){
     background-color: lightgray;
     border-bottom-color: blueviolet;
     border-bottom-width: 2px;
@@ -47,7 +47,7 @@ main{
     border-style: solid;
     border-color: rgb(43, 67, 226);
 }
-#table-shoppingCart tr:nth-child(2n + 3){
+#table-shoppingCart-body tr:nth-child(odd){
     background-color: lightgray;
     border-bottom-color: rgb(43, 67, 226);
     border-bottom-width: 2px;
