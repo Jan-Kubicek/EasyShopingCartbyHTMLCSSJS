@@ -142,6 +142,20 @@ function reset(){
     importGoods();
 }
 
+function removeOneRow(){ 
+    const indexOfRow = Number(getElementById("idOfRemovingRow").value);                        //! Error
+    const numberOfSelectedPieces = selectedGoods[indexOfRow].numberOfAvaiablePieces;
+    const name = selectedGoods[indexOfRow];
+    for (const good of goods) {
+        if(name = good.name){
+            good.numberOfAvaiablePieces += numberOfSelectedPieces;
+        }
+    }
+    //TODO vymazat z pole a poté resetovat 
+    selectedGoods = selectedGoods.slice(indexOfRow);
+    addGoods();
+}
+
 function removeAllGoods(){
     for (const selectedGood of selectedGoods) {
         const name = selectedGood.name;
