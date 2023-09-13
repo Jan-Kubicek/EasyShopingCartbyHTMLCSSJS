@@ -81,8 +81,23 @@ function addGoods(){
             alert("You cannot buy nothing");
             return;
         }
+        if(goods[idOfGood].numberOfAvaiablePieces == 0){
+            alert("You cannot buy more goods than how many is available right now");
+            return;
+        }
+        if(numberOfPieces > goods[idOfGood].numberOfAvaiablePieces) {
+            numberOfPieces = goods[idOfGood].numberOfAvaiablePieces;
+            goods[idOfGood].numberOfAvaiablePieces = 0;
+            alert("You cannot buy more goods than how many is available right now");
+            reset();
+        }else{
+            let available = goods[idOfGood].numberOfAvaiablePieces;
+            available -= Number(numberOfPieces);
+            goods[idOfGood].numberOfAvaiablePieces = available;
+            reset();
+        }
         const selectedGood = Object.assign({},goods[idOfGood]); //*Making copy of object
-        let priceForAllPieces = numberOfPieces * selectedGood.pricePerPiece;
+        const priceForAllPieces = numberOfPieces * selectedGood.pricePerPiece;
         selectedGood.pricePerPiece = priceForAllPieces;
         selectedGood.numberOfAvaiablePieces = numberOfPieces;
         selectedGoods.push(selectedGood);
