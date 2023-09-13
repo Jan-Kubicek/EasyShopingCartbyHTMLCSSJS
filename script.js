@@ -143,16 +143,16 @@ function reset(){
 }
 
 function removeOneRow(){ 
-    const indexOfRow = Number(getElementById("idOfRemovingRow").value);                        //! Error
+    const indexOfRow = Number(document.getElementById("idOfRemovingRow").value);   
     const numberOfSelectedPieces = selectedGoods[indexOfRow].numberOfAvaiablePieces;
     const name = selectedGoods[indexOfRow];
     for (const good of goods) {
-        if(name = good.name){
+        if(name == good.name){
             good.numberOfAvaiablePieces += numberOfSelectedPieces;
         }
     }
     //TODO vymazat z pole a poté resetovat 
-    selectedGoods = selectedGoods.slice(indexOfRow);
+    const x = selectedGoods.shift(indexOfRow);
     addGoods();
 }
 
