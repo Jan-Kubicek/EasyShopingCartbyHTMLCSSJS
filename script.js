@@ -57,9 +57,13 @@ function payment(){
 function creatingListOfGoods(){
     const kofola2l = new good("Kofola 2L",130,30); goods.push(kofola2l);
     const kofola15l = new good("Kofola 1.5l",90,25); goods.push(kofola15l);
-    const jablka = new good("Jablka",300,7); goods.push(jablka);
-    const hrusky = new good("Hrusky",180,10); goods.push(hrusky);
-    
+    const jablka = new good("Jablko",300,7); goods.push(jablka);
+    const hrusky = new good("Hruska",180,10); goods.push(hrusky);
+    const rohlik = new good("Rohlik",40,4); goods.push(rohlik);
+    const chleb = new good("Chleb",20,50); goods.push(chleb);
+    const jogurtBily = new good ("Jogurt Bily",60,25); goods.push(jogurtBily);
+    const jogurtBoruvkovy = new good("Jogurt Boruvkovy",60,30); goods.push(jogurtBoruvkovy);
+    const jogurtJahodovy = new good("Jogurt Jahodovy",60,30); goods.push(jogurtJahodovy);
 }
 
 function importGoods(){ 
