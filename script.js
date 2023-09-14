@@ -36,10 +36,22 @@ function payment(){
             sum *= 4.24;
             break;    
     }
-    //* mám cenu 
-    //TODO zobrazit seznam zakoupených produktů => vymazat košík
-    //TODO doplnit další věci do košíku
-    alert(`You need to pay: ${sum}in currency :${currency}`);
+    let receipt = "";
+    for(let i = 0 ; i < selectedGoods.length; i ++){
+        receipt += `${i} `;
+        receipt += `${selectedGoods[i].name} `;
+        receipt += `${selectedGoods[i].numberOfAvaiablePieces} `;
+        receipt += `${selectedGoods[i].pricePerPiece} `;
+        receipt += `\n`;
+    }   
+     alert(`You need to pay: ${sum} in currency :${currency}\n${receipt}`);
+     selectedGoods.length = 0;
+     const numberOfRowsInShoppingCart = document.getElementById("table-shoppingCart-body").rows.length;
+     for (let i = 0; i < numberOfRowsInShoppingCart; i++){
+         for (const row of document.getElementById("table-shoppingCart-body").rows) {
+             document.getElementById("table-shoppingCart-body").deleteRow(row);
+         }
+     }
 }
 
 function creatingListOfGoods(){
@@ -47,6 +59,7 @@ function creatingListOfGoods(){
     const kofola15l = new good("Kofola 1.5l",90,25); goods.push(kofola15l);
     const jablka = new good("Jablka",300,7); goods.push(jablka);
     const hrusky = new good("Hrusky",180,10); goods.push(hrusky);
+    
 }
 
 function importGoods(){ 
